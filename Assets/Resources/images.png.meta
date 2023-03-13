@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 832755fe891444a468f827a7b2faa37c
+guid: ef182a6187a0b764591ddb3016b3a647
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,17 +125,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plant Growing_0
+      name: images_0
       rect:
         serializedVersion: 2
         x: 1
-        y: 191
-        width: 17
-        height: 4
+        y: 187
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,19 +155,103 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c97a73f8fd9e0d4448f4a1fbfecf0bb6
-      internalID: -1758934504
+      spriteID: 450a9ef088937394085177efa900c948
+      internalID: -1145205834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plant Growing_1
+      name: images_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 191
-        width: 5
+        x: 20
+        y: 181
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3017fb886bec64c923e2f50a11a509
+      internalID: -1437787545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blueberry_fase2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 171
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33635356aa820434e8cf3da698330575
+      internalID: -1504301150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blueberry_fase1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 171
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e7fa1b616ed9b441aa2cffae5891768
+      internalID: -1035914937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: images_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 185
+        width: 15
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 064456f92f15e2f439d6a0d64c6e21a7
+      internalID: 1350025825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: images_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 194
+        width: 4
         height: 5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -164,40 +260,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d355b909e1aadef4581506618da1366c
-      internalID: 552150430
+      spriteID: 4a60d60540def70478152d2a8c957597
+      internalID: 1532517347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plant Growing_2
+      name: blueberry_fase0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 189
-        width: 9
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 92
+        y: 172
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec88d2640d3260a478badf66a7966620
-      internalID: 1127417391
+      spriteID: a8ef16c41d7031241807b1ceaa1f015b
+      internalID: 385886612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plant Growing_3
+      name: images_7
       rect:
         serializedVersion: 2
-        x: 50
-        y: 191
-        width: 5
+        x: 107
+        y: 172
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe04f9cb9479d646ab52130d6ae93fa
+      internalID: -1687621779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: images_9
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 185
+        width: 14
         height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -206,134 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94b0f697192b04d4b87849427b46f6b2
-      internalID: 518649956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plant Growing_4
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 191
-        width: 5
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be749a7b3a77990458ae5601678ae539
-      internalID: 1673443059
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plant Growing_5
-      rect:
-        serializedVersion: 2
-        x: 26
-        y: 108
-        width: 7
-        height: 53
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e93eaa81b12368c4a8d7b8fd663432f8
-      internalID: -548288975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plant Growing_6
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 108
-        width: 13
-        height: 53
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: af0adf916eae930499aca3d67f381789
-      internalID: 287616078
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plant Growing_7
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 108
-        width: 20
-        height: 53
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38f63955a52c1974987973b599c1e79d
-      internalID: 129483401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plant Growing_8
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 108
-        width: 22
-        height: 53
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b3a7bfa78d95ccc4daa07826b976e296
-      internalID: 1078757061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plant Growing_9
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 108
-        width: 20
-        height: 58
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7730f9ea046ccf4db982abbfc46b5c7
-      internalID: -1910374829
+      spriteID: d8e9f1ead6722c945b624a153a24647b
+      internalID: 48439918
       vertices: []
       indices: 
       edges: []
@@ -349,16 +340,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Plant Growing_1: 552150430
-      Plant Growing_5: -548288975
-      Plant Growing_6: 287616078
-      Plant Growing_3: 518649956
-      Plant Growing_0: -1758934504
-      Plant Growing_4: 1673443059
-      Plant Growing_2: 1127417391
-      Plant Growing_9: -1910374829
-      Plant Growing_8: 1078757061
-      Plant Growing_7: 129483401
+      images_7: -1687621779
+      images_4: 1350025825
+      blueberry_fase1: -1035914937
+      images_1: -1437787545
+      blueberry_fase0: 385886612
+      images_9: 48439918
+      images_8: -1267793656
+      blueberry_fase2: -1504301150
+      images_5: 1532517347
+      images_0: -1145205834
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

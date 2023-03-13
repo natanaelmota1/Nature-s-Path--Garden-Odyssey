@@ -10,21 +10,22 @@ public class PlantScript : MonoBehaviour
     public GameObject plantseedButton;
     public GameObject sellplantButton;
     public string Plantype;
-    public float totalTimeToGrow = 7200f; // Tempo total de crescimento da planta em segundos
+    public float totalTimeToGrow = 60f; // Tempo total de crescimento da planta em segundos
     private float timeToDecrement; // Tempo restante para a planta crescer
     private float timePerPhase; // Tempo correspondente a cada fase de crescimento
     public Text timeText;
     SpriteRenderer spriteRenderer;
+    string p = "";
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        string p = PlayerPrefs.GetString("ThisPlanType" + thisplantnum);
+        p = PlayerPrefs.GetString("ThisPlanType" + thisplantnum);
         if (p != "")
         {
-            spriteRenderer.sprite = Resources.Load<Sprite>(p);
+           spriteRenderer.sprite = Resources.Load<Sprite>(p);
         }
         int plant_days = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
-        int plant_seconds = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
+        int plant_seconds = PlayerPrefs.GetInt("ThisPlantSeconds" + thisplantnum);
         thisplantTick = (plant_days * 864000000000) + (plant_seconds * 10000000);
 
         timeToDecrement = totalTimeToGrow;
@@ -34,33 +35,39 @@ public class PlantScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        p = PlayerPrefs.GetString("ThisPlanType" + thisplantnum);
         timeToDecrement -= Time.deltaTime;
-
-        if (timeToDecrement <= timePerPhase * 0.25f) // Verifica se o tempo restante é menor ou igual a 25% do tempo total
-        {
-            timeText.text = timeToDecrement.ToString() + "/n" + "Fase 4";
-        }
-        else if (timeToDecrement <= timePerPhase * 0.5f) // Verifica se o tempo restante é menor ou igual a 50% do tempo total
-        {
-            timeText.text = timeToDecrement.ToString() + "/n" + "Fase 3";
-        }
-        else if (timeToDecrement <= timePerPhase * 0.75f) // Verifica se o tempo restante é menor ou igual a 75% do tempo total
-        {
-            timeText.text = timeToDecrement.ToString() + "/n" + "Fase 2";
-        }
-        else if (timeToDecrement <= timePerPhase) // Verifica se o tempo restante é menor ou igual ao tempo de uma fase completa
-        {
-            timeText.text = timeToDecrement.ToString() + "/n" + "Fase 1";
-        }
-        else // Se ainda não atingiu nenhuma das condições anteriores, significa que a planta ainda não começou a crescer
-        {
-            timeText.text = timeToDecrement.ToString() + "/n" + "Aguardando";
-        }
+        timeText.text = Mathf.RoundToInt(timeToDecrement).ToString() + " seconds";
+        Debug.Log(p);
 
         if (timeToDecrement <= 0) // Se o tempo restante for menor ou igual a zero, significa que a planta já cresceu completamente
         {
-            timeText.text = timeToDecrement.ToString() + "/n" + "Cresceu";
+            if (p != "")
+            {
+                spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase2");
+            }
         }
+        else if (timeToDecrement <= totalTimeToGrow * 0.5f) // Verifica se o tempo restante é menor ou igual a 50% do tempo total
+        {
+            if (p != "")
+            {
+                spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase1");
+            }
+        }
+        else if (timeToDecrement <= totalTimeToGrow * 0.75f) // Verifica se o tempo restante é menor ou igual a 75% do tempo total
+        {
+            if (p != "")
+            {
+                spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase0");
+            }
+        }
+        else // Se ainda não atingiu nenhuma das condições anteriores, significa que a planta ainda não começou a crescer
+        {
+            if (p != "")
+            {
+                spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase0");
+            }
+        } 
     }
 
     public void PlantSeedButton(bool bo)
@@ -92,15 +99,18 @@ public class PlantScript : MonoBehaviour
 
         print((plant_days * 864000000000) + (plant_seconds * 10000000));
         print(present);
-
+        gameObject.SetActive(true); // reativa o objeto da planta
     }
 
     public void SellPlant()
     {
+        
         spriteRenderer.sprite = null;
         PlayerPrefs.SetString("ThisPlanType" + thisplantnum, "");
         PlayerPrefs.SetInt("ThisPlantDays" + thisplantnum, 0);
         PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, 0);
         timeText.enabled = false;
+        Plantype = "";
+        gameObject.SetActive(false); // desativa o objeto da planta
     }
 }
