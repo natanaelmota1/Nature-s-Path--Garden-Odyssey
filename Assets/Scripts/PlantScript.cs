@@ -10,7 +10,7 @@ public class PlantScript : MonoBehaviour
     public GameObject plantseedButton;
     public GameObject sellplantButton;
     public string Plantype;
-    public float totalTimeToGrow = 60f; // Tempo total de crescimento da planta em segundos
+    public float totalTimeToGrow = 60; // Tempo total de crescimento da planta em segundos
     private float timeToDecrement; // Tempo restante para a planta crescer
     private float timePerPhase; // Tempo correspondente a cada fase de crescimento
     public Text timeText;
@@ -28,7 +28,7 @@ public class PlantScript : MonoBehaviour
         int plant_seconds = PlayerPrefs.GetInt("ThisPlantSeconds" + thisplantnum);
         thisplantTick = (plant_days * 864000000000) + (plant_seconds * 10000000);
 
-        timeToDecrement = totalTimeToGrow;
+        timeToDecrement = PlayerPrefs.GetInt("ThisPlantSeconds" + thisplantnum);
         timePerPhase = totalTimeToGrow / 4f; // Divide o tempo total por 4 para obter o tempo de cada fase
     }
 
@@ -37,6 +37,7 @@ public class PlantScript : MonoBehaviour
     {
         p = PlayerPrefs.GetString("ThisPlanType" + thisplantnum);
         timeToDecrement -= Time.deltaTime;
+        PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, (int)Mathf.RoundToInt(timeToDecrement));
         timeText.text = Mathf.RoundToInt(timeToDecrement).ToString() + " seconds";
         Debug.Log(p);
 
@@ -91,7 +92,7 @@ public class PlantScript : MonoBehaviour
         long present_day = present / 864000000000;
         long present_second = present % 864000000000 / 10000000;
         PlayerPrefs.SetInt("ThisPlantDays" + thisplantnum, (int)present_day);
-        PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, (int)present_second);
+        PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, (int)totalTimeToGrow);
         thisplantTick = present;
 
         int plant_days = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
@@ -106,6 +107,7 @@ public class PlantScript : MonoBehaviour
     {
         
         spriteRenderer.sprite = null;
+        timeToDecrement = totalTimeToGrow;
         PlayerPrefs.SetString("ThisPlanType" + thisplantnum, "");
         PlayerPrefs.SetInt("ThisPlantDays" + thisplantnum, 0);
         PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, 0);
