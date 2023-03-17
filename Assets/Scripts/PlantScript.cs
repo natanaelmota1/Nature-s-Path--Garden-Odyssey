@@ -40,11 +40,13 @@ public class PlantScript : MonoBehaviour
         PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, (int)Mathf.RoundToInt(timeToDecrement));
         timeText.text = Mathf.RoundToInt(timeToDecrement).ToString() + " seconds";
         Debug.Log(p);
+        timeText.enabled = false;
 
         if (timeToDecrement <= 0) // Se o tempo restante for menor ou igual a zero, significa que a planta já cresceu completamente
         {
             if (p != "")
             {
+                timeText.enabled = true;
                 spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase2");
             }
         }
@@ -52,6 +54,7 @@ public class PlantScript : MonoBehaviour
         {
             if (p != "")
             {
+                timeText.enabled = true;
                 spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase1");
             }
         }
@@ -59,6 +62,7 @@ public class PlantScript : MonoBehaviour
         {
             if (p != "")
             {
+                timeText.enabled = true;
                 spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase0");
             }
         }
@@ -66,6 +70,7 @@ public class PlantScript : MonoBehaviour
         {
             if (p != "")
             {
+                timeText.enabled = true;
                 spriteRenderer.sprite = Resources.Load<Sprite>(p+"_fase0");
             }
         } 
@@ -87,6 +92,7 @@ public class PlantScript : MonoBehaviour
         Plantype = GameObject.Find("UIManager").GetComponent<ManagerUI>().SeedSelection;
         spriteRenderer.sprite = Resources.Load<Sprite>(Plantype);
         PlayerPrefs.SetString("ThisPlanType" + thisplantnum, Plantype);
+        timeToDecrement = totalTimeToGrow;
 
         long present = System.DateTime.Now.Ticks;
         long present_day = present / 864000000000;
