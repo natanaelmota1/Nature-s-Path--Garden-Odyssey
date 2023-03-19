@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   latitude: -60
   longitude: 20
+  tempText: {fileID: 1751782152}
   climaText: {fileID: 1515810766}
 --- !u!4 &169964423
 Transform:
