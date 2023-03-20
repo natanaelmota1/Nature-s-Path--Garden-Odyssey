@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bc0f2ca6a06e249a15a8d7e1e697eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  latitude: -60
-  longitude: 20
+  latitude: -3.10719
+  longitude: -60.0261
   tempText: {fileID: 1751782152}
   climaText: {fileID: 1515810766}
 --- !u!4 &169964423
@@ -498,7 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348869764c70f0848a1ebb5796c86349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisplantTick: 0
   thisplantnum: 2
   plantseedButton: {fileID: 934298322}
   sellplantButton: {fileID: 2021189060}
@@ -647,7 +646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348869764c70f0848a1ebb5796c86349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisplantTick: 0
   thisplantnum: 3
   plantseedButton: {fileID: 2104874153}
   sellplantButton: {fileID: 2095659033}
@@ -1149,7 +1147,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Remove
+  m_Text: Sell Plant
 --- !u!222 &733685285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1561,7 +1559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348869764c70f0848a1ebb5796c86349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisplantTick: 0
   thisplantnum: 1
   plantseedButton: {fileID: 1976713475}
   sellplantButton: {fileID: 656152022}
@@ -3013,7 +3010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1973669796
 RectTransform:
   m_ObjectHideFlags: 0

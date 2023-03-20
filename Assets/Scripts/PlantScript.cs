@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlantScript : MonoBehaviour
 {
-    public long thisplantTick;
     public int thisplantnum;
     public GameObject plantseedButton;
     public GameObject sellplantButton;
@@ -24,22 +23,25 @@ public class PlantScript : MonoBehaviour
         {
            spriteRenderer.sprite = Resources.Load<Sprite>(p);
         }
-        int plant_days = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
-        int plant_seconds = PlayerPrefs.GetInt("ThisPlantSeconds" + thisplantnum);
-        thisplantTick = (plant_days * 864000000000) + (plant_seconds * 10000000);
+        int plant_seconds = PlayerPrefs.GetInt("ThisPlantTimeToGrow" + thisplantnum);
 
-        timeToDecrement = PlayerPrefs.GetInt("ThisPlantSeconds" + thisplantnum);
+        timeToDecrement = PlayerPrefs.GetInt("ThisPlantTimeToGrow" + thisplantnum);
         timePerPhase = totalTimeToGrow / 4f; // Divide o tempo total por 4 para obter o tempo de cada fase
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timeToDecrement > 0){
+            timeToDecrement -= Time.deltaTime;
+            timeText.text = Mathf.RoundToInt(timeToDecrement).ToString() + " seconds";
+        }
+        else {
+            timeText.text = "Planta Crescida";
+        }
+
         p = PlayerPrefs.GetString("ThisPlanType" + thisplantnum);
-        timeToDecrement -= Time.deltaTime;
-        PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, (int)Mathf.RoundToInt(timeToDecrement));
-        timeText.text = Mathf.RoundToInt(timeToDecrement).ToString() + " seconds";
-        Debug.Log(p);
+        PlayerPrefs.SetInt("ThisPlantTimeToGrow" + thisplantnum, (int)Mathf.RoundToInt(timeToDecrement));
         timeText.enabled = false;
 
         if (timeToDecrement <= 0) // Se o tempo restante for menor ou igual a zero, significa que a planta já cresceu completamente
@@ -94,18 +96,10 @@ public class PlantScript : MonoBehaviour
         PlayerPrefs.SetString("ThisPlanType" + thisplantnum, Plantype);
         timeToDecrement = totalTimeToGrow;
 
-        long present = System.DateTime.Now.Ticks;
-        long present_day = present / 864000000000;
-        long present_second = present % 864000000000 / 10000000;
-        PlayerPrefs.SetInt("ThisPlantDays" + thisplantnum, (int)present_day);
-        PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, (int)totalTimeToGrow);
-        thisplantTick = present;
+        PlayerPrefs.SetInt("ThisPlantTimeToGrow" + thisplantnum, (int)totalTimeToGrow);
 
-        int plant_days = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
         int plant_seconds = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
 
-        print((plant_days * 864000000000) + (plant_seconds * 10000000));
-        print(present);
         gameObject.SetActive(true); // reativa o objeto da planta
     }
 
@@ -115,8 +109,7 @@ public class PlantScript : MonoBehaviour
         spriteRenderer.sprite = null;
         timeToDecrement = totalTimeToGrow;
         PlayerPrefs.SetString("ThisPlanType" + thisplantnum, "");
-        PlayerPrefs.SetInt("ThisPlantDays" + thisplantnum, 0);
-        PlayerPrefs.SetInt("ThisPlantSeconds" + thisplantnum, 0);
+        PlayerPrefs.SetInt("ThisPlantTimeToGrow" + thisplantnum, 0);
         timeText.enabled = false;
         Plantype = "";
         gameObject.SetActive(false); // desativa o objeto da planta

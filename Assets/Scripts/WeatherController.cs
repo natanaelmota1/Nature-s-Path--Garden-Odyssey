@@ -76,7 +76,7 @@ public class WeatherController : MonoBehaviour
                 Debug.Log($"Temperature: {weatherData.KeyInfo.Temperature}");
                 Debug.Log($"Humidity: {weatherData.KeyInfo.Humidity}");
                 Debug.Log($"Pressure: {weatherData.KeyInfo.Pressure}");
-                tempText.text = $"Temperature: {weatherData.KeyInfo.Temperature} ºC";
+                tempText.text = $"Temperature: {(int)Mathf.Round(weatherData.KeyInfo.Temperature)} ºC";
                 climaText.text = $"Clima: {weatherData.WeatherConditions[0].Group}";
             }
 
@@ -118,7 +118,7 @@ public class WeatherController : MonoBehaviour
 
     public class OpenWeather_KeyInfo
     {
-        [JsonProperty("temp")] public double Temperature { get; set; }
+        [JsonProperty("temp")] public float Temperature { get; set; }
         [JsonProperty("feels_like")] public double TemperatureFeelsLike { get; set; }
         [JsonProperty("temp_min")] public double TemperatureMinimum { get; set; }
         [JsonProperty("temp_max")] public double TemperatureMaximum { get; set; }
