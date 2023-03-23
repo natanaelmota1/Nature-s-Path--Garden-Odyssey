@@ -8,7 +8,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/WeatherController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -48,10 +47,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="3156">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="3156" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -71,6 +70,7 @@
       <workItem from="1677443972913" duration="4747000" />
       <workItem from="1678201723176" duration="1130000" />
       <workItem from="1678562118728" duration="9234000" />
+      <workItem from="1679241449295" duration="5466000" />
     </task>
     <servers />
   </component>
