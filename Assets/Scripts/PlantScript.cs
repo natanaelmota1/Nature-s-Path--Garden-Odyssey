@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,9 @@ public class PlantScript : MonoBehaviour
     public Text timeText;
     SpriteRenderer spriteRenderer;
     string p = "";
+    private string weather;
+    private float temperature;
+    
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -32,8 +36,18 @@ public class PlantScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        weather = PlayerPrefs.GetString("Weather");
+        temperature = PlayerPrefs.GetFloat("Temperature");
+        Debug.Log($"Temperature: {(int)Mathf.Round(temperature)} ºC");
+        Debug.Log($"Clima: {weather}");
+        int currentTime = DateTime.Now.Hour;
+        Debug.Log($"Hour: {currentTime}");
+        
+        // Calcula o fator de crescimento com base nas informações de clima e horário
+        float growthFactor = CalculateGrowthFactor(temperature, currentTime);
+        
         if (timeToDecrement > 0){
-            timeToDecrement -= Time.deltaTime;
+            timeToDecrement -= Time.deltaTime * growthFactor;
             timeText.text = Mathf.RoundToInt(timeToDecrement).ToString() + " seconds";
         }
         else {
@@ -96,6 +110,17 @@ public class PlantScript : MonoBehaviour
         PlayerPrefs.SetString("ThisPlanType" + thisplantnum, Plantype);
         timeToDecrement = totalTimeToGrow;
 
+        if (Plantype == "blueberry")
+        {
+            PlayerPrefs.SetFloat("ThisPlantIdealTemperature" + thisplantnum, 25.0f);
+            PlayerPrefs.SetInt("ThisPlantIdealHour" + thisplantnum, 12);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("ThisPlantIdealTemperature" + thisplantnum, 22.0f);
+            PlayerPrefs.SetInt("ThisPlantIdealHour" + thisplantnum, 18);
+        }
+        
         PlayerPrefs.SetInt("ThisPlantTimeToGrow" + thisplantnum, (int)totalTimeToGrow);
 
         int plant_seconds = PlayerPrefs.GetInt("ThisPlantDays" + thisplantnum);
@@ -113,5 +138,34 @@ public class PlantScript : MonoBehaviour
         timeText.enabled = false;
         Plantype = "";
         gameObject.SetActive(false); // desativa o objeto da planta
+    }
+    
+    private float CalculateGrowthFactor(float temperature, int currentHour)
+    {
+        // Defina o fator de crescimento máximo para uma temperatura ideal
+        float maxGrowthFactor = 1.0f;
+
+        // Defina a temperatura ideal para o crescimento da planta
+        float idealTemperature = PlayerPrefs.GetFloat("ThisPlantIdealTemperature" + thisplantnum);
+
+        // Calcule a diferença entre a temperatura atual e a temperatura ideal
+        float temperatureDiff = Mathf.Abs(temperature - idealTemperature);
+
+        // Calcule o fator de crescimento com base na diferença de temperatura
+        float temperatureFactor = Mathf.Clamp01(1.0f - temperatureDiff / idealTemperature);
+
+        // Defina o horário ideal para o crescimento da planta
+        int idealHour = PlayerPrefs.GetInt("ThisPlantIdealHour" + thisplantnum);;
+
+        // Calcule a diferença entre o horário atual e o horário ideal
+        int hourDiff = Mathf.Abs(currentHour - idealHour);
+
+        // Calcule o fator de crescimento com base na diferença de horário
+        float hourFactor = Mathf.Clamp01(1.0f - hourDiff / 6.0f);
+
+        // Calcule o fator de crescimento total multiplicando os fatores de temperatura e horário
+        float growthFactor = temperatureFactor * hourFactor * maxGrowthFactor;
+
+        return growthFactor;
     }
 }

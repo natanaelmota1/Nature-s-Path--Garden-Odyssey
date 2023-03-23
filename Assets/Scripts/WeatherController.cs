@@ -17,39 +17,44 @@ public class WeatherController : MonoBehaviour
     public Text tempText;
     public Text climaText;
     private OpenWeatherResponse weatherData;
+    public string weather;
+    public float temperature;
+    private PlantScript _plantScript;
     
 
     private void Start()
     {
-        // // Verifica se o serviço de localização está habilitado no dispositivo
-        // if (!Input.location.isEnabledByUser)
-        // {
-        //     Debug.Log("Serviço de localização desabilitado pelo usuário.");
-        //     return;
-        // }
-        //
-        // // Inicia o serviço de localização com precisão de 5 metros
-        // Input.location.Start(5f);
-        //
-        // // Aguarda até que o serviço de localização esteja inicializado
-        // int maxWait = 20;
-        // while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
-        // {
-        //     maxWait--;
-        //     Debug.Log("Aguardando serviço de localização inicializar...");
-        //     System.Threading.Thread.Sleep(1000);
-        // }
-        //
-        // // Verifica se o serviço de localização foi inicializado com sucesso
-        // if (Input.location.status == LocationServiceStatus.Failed)
-        // {
-        //     Debug.Log("Falha ao inicializar serviço de localização.");
-        //     return;
-        // }
-        //
-        // // Obtem a latitude e a longitude atual do dispositivo
-        // latitude = Input.location.lastData.latitude;
-        // longitude = Input.location.lastData.longitude;
+        _plantScript = new PlantScript();
+        
+        // Verifica se o serviço de localização está habilitado no dispositivo
+        if (!Input.location.isEnabledByUser)
+        {
+            Debug.Log("Serviço de localização desabilitado pelo usuário.");
+            return;
+        }
+        
+        // Inicia o serviço de localização com precisão de 5 metros
+        Input.location.Start(5f);
+        
+        // Aguarda até que o serviço de localização esteja inicializado
+        int maxWait = 20;
+        while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
+        {
+            maxWait--;
+            Debug.Log("Aguardando serviço de localização inicializar...");
+            System.Threading.Thread.Sleep(1000);
+        }
+        
+        // Verifica se o serviço de localização foi inicializado com sucesso
+        if (Input.location.status == LocationServiceStatus.Failed)
+        {
+            Debug.Log("Falha ao inicializar serviço de localização.");
+            return;
+        }
+        
+        // Obtem a latitude e a longitude atual do dispositivo
+        latitude = Input.location.lastData.latitude;
+        longitude = Input.location.lastData.longitude;
 
         Debug.Log($"Latitude: {latitude}, Longitude: {longitude}");
         
@@ -76,31 +81,32 @@ public class WeatherController : MonoBehaviour
                 Debug.Log($"Temperature: {weatherData.KeyInfo.Temperature}");
                 Debug.Log($"Humidity: {weatherData.KeyInfo.Humidity}");
                 Debug.Log($"Pressure: {weatherData.KeyInfo.Pressure}");
-                tempText.text = $"Temperature: {(int)Mathf.Round(weatherData.KeyInfo.Temperature)} ºC";
-                climaText.text = $"Clima: {weatherData.WeatherConditions[0].Group}";
+                weather = weatherData.WeatherConditions[0].Group;
+                temperature = weatherData.KeyInfo.Temperature;
+                tempText.text = $"Temperature: {(int)Mathf.Round(temperature)} ºC";
+                climaText.text = $"Clima: {weather}";
+                PlayerPrefs.SetString("Weather", weather);
+                PlayerPrefs.SetFloat("Temperature", temperature);
             }
-
-            //ProcessWeatherData(weatherData);
         }
     }
 
-    // private void ProcessWeatherData(string data)
-    // {
-    //     WeatherInfo weatherInfo = JsonUtility.FromJson<WeatherInfo>(data);
-    //     
-    //     // Use as informações climáticas obtidas para ajustar o ambiente do jogo
-    //     // Exemplo:
-    //     float temperature = weatherInfo.main.temp;
-    //     Debug.Log("Temperatura atual: " + temperature + " °C");
-    //     climaText.text = "Temperatura atual: " + temperature + " °C";
-    // }
-    
     private void OnDestroy()
     {
         // Para o serviço de localização
         Input.location.Stop();
     }
-    
+
+    public string GetWeather()
+    {
+        return weather;
+    }
+
+    public float GetTemperature()
+    {
+        return temperature;
+    }
+
     public class OpenWeather_Coordinates
     {
         [JsonProperty("lon")] public double Longitude { get; set; }
@@ -128,7 +134,7 @@ public class WeatherController : MonoBehaviour
         [JsonProperty("humidity")] public int Humidity { get; set; }
     }
 
-    class OpenWeatherResponse
+    public class OpenWeatherResponse
     {
         [JsonProperty("weather")] public List<OpenWeather_Condition> WeatherConditions { get; set; }
         [JsonProperty("main")] public OpenWeather_KeyInfo KeyInfo { get; set; }

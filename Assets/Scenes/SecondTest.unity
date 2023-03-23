@@ -306,6 +306,8 @@ MonoBehaviour:
   longitude: -60.0261
   tempText: {fileID: 1751782152}
   climaText: {fileID: 1515810766}
+  weather: 
+  temperature: 0
 --- !u!4 &169964423
 Transform:
   m_ObjectHideFlags: 0
